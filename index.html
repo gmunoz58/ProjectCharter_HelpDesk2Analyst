@@ -2,2000 +2,1099 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Help Desk to Analyst: Strategic Career Transition Project</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Charter – Help Desk to Analyst: Strategic Career Transition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
-    /* ------------------------------
-       Base Styles & Layout
-    --------------------------------*/
     :root {
-      --bg: #f5f7fb;
-      --bg-alt: #ffffff;
-      --primary: #1f4f96;
-      --primary-soft: #d8e4ff;
-      --accent: #fcbf49;
-      --text: #1f2933;
-      --muted: #6b7280;
-      --border: #e2e8f0;
-      --radius-lg: 14px;
-      --radius-md: 10px;
-      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.12);
+      --bg-gradient-start: #0f172a;
+      --bg-gradient-end: #1e293b;
+      --bg-accent-1: #38bdf8;
+      --bg-accent-2: #a855f7;
+
+      --window-bg: rgba(15, 23, 42, 0.92);
+      --window-border: rgba(148, 163, 184, 0.45);
+      --window-shadow: 0 26px 70px rgba(15, 23, 42, 0.9);
+
+      --text-primary: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent-color: #38bdf8;
+
+      --radius-lg: 18px;
+      --radius-md: 12px;
+
       --transition-fast: 0.18s ease-out;
+      --transition-med: 0.3s ease;
+
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      color: var(--text);
-      background: radial-gradient(circle at top left, #edf2ff, #f8fafc);
-      line-height: 1.6;
-    }
-
-    a {
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 90px 1.5rem 3rem;
-    }
-
-    @media (min-width: 1024px) {
-      main {
-        padding-top: 110px;
-      }
-    }
-
-    /* ------------------------------
-       Sticky Top Navigation
-    --------------------------------*/
-    .top-nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(12px);
-      background: rgba(248, 250, 252, 0.85);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.6);
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-    }
-
-    .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0.5rem 1rem;
+      min-height: 100vh;
+      font-family: var(--font-stack);
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at top left, var(--bg-accent-2) 0, transparent 45%),
+        radial-gradient(circle at bottom right, var(--bg-accent-1) 0, transparent 45%),
+        linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
       display: flex;
+      justify-content: center;
+      padding: 2.4rem 1.4rem;
+    }
+
+    .page-shell {
+      position: relative;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* Faint background title to echo the OS page */
+    .bg-title {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.16;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 1rem;
+      justify-content: flex-start;
+      text-align: center;
+      padding-top: 0.4rem;
     }
 
-    .nav-brand {
-      font-weight: 700;
-      font-size: 0.95rem;
-      white-space: nowrap;
-      color: var(--primary);
-    }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-left: auto;
-    }
-
-    .nav-link {
-      font-size: 0.78rem;
-      padding: 0.35rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      background: transparent;
-      cursor: pointer;
-      transition: background var(--transition-fast),
-        transform var(--transition-fast), border-color var(--transition-fast),
-        box-shadow var(--transition-fast), color var(--transition-fast);
-      color: var(--muted);
-    }
-
-    .nav-link:hover {
-      background: var(--primary-soft);
-      border-color: rgba(37, 99, 235, 0.25);
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
-      transform: translateY(-1px);
-      color: var(--primary);
-    }
-
-    .nav-link.active {
-      background: var(--primary);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 5px 16px rgba(37, 99, 235, 0.35);
-    }
-
-    @media (max-width: 768px) {
-      .nav-inner {
-        flex-wrap: wrap;
-      }
-      .nav-links {
-        width: 100%;
-      }
-      .nav-link {
-        font-size: 0.75rem;
-      }
-    }
-
-    /* ------------------------------
-       Hero Section
-    --------------------------------*/
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
-      gap: 1.75rem;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-
-    .hero-title {
-      font-size: clamp(1.9rem, 3vw, 2.4rem);
-      font-weight: 800;
-      color: #0f172a;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-subtitle {
-      font-size: 0.95rem;
-      color: var(--muted);
-      max-width: 32rem;
-    }
-
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.9rem;
-    }
-
-    .badge {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: #ffffffaa;
-      backdrop-filter: blur(8px);
-    }
-
-    .hero-card {
-      background: radial-gradient(circle at top left, #eff6ff, #ffffff);
-      padding: 1.2rem 1.4rem;
-      border-radius: 1.2rem;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(226, 232, 240, 0.9);
-    }
-
-    .hero-card-title {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-    }
-
-    .hero-meta {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem;
-      margin-top: 0.75rem;
-      font-size: 0.8rem;
-    }
-
-    .meta-label {
-      font-size: 0.7rem;
+    .bg-title h1 {
+      font-size: clamp(1.6rem, 2.4rem + 1vw, 3rem);
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 0.15rem;
     }
 
-    .meta-value {
+    .bg-title h2 {
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    /* Main Charter Window */
+    .charter-window {
+      position: relative;
+      z-index: 1;
+      background: var(--window-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--window-border);
+      box-shadow: var(--window-shadow);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      overflow: hidden;
+    }
+
+    .charter-header {
+      padding: 0.9rem 1.4rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(
+        to right,
+        rgba(15, 23, 42, 0.98),
+        rgba(30, 64, 175, 0.9)
+      );
+    }
+
+    .charter-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .charter-icon-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 9px;
+      background: radial-gradient(circle at top left, var(--bg-accent-2), var(--bg-accent-1));
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .charter-header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.12rem;
+    }
+
+    .charter-header-text span:first-child {
+      font-size: 1rem;
       font-weight: 600;
-      color: #111827;
+    }
+
+    .charter-header-text span:last-child {
+      font-size: 0.8rem;
+      color: #cbd5f5;
+    }
+
+    .charter-tag {
+      font-size: 0.78rem;
+      padding: 0.26rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: #e5f0ff;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.35), transparent 55%);
+      white-space: nowrap;
+    }
+
+    /* Layout: sidebar + content */
+    .charter-body {
+      display: grid;
+      grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+      gap: 1.6rem;
+      padding: 1.7rem 1.8rem 1.9rem;
     }
 
     @media (max-width: 900px) {
-      .hero {
+      .charter-body {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .charter-nav {
+        border-right: none;
+        border-bottom: 1px solid rgba(30, 41, 59, 0.9);
+        padding-bottom: 1rem;
+        margin-bottom: 0.8rem;
       }
     }
 
-    /* ------------------------------
-       Sections & Cards
-    --------------------------------*/
-    section {
-      margin-bottom: 2rem;
+    .charter-nav {
+      border-right: 1px solid rgba(31, 41, 55, 0.9);
+      padding-right: 1.3rem;
     }
 
-    .section-card {
-      background: var(--bg-alt);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      border: 1px solid var(--border);
-      padding: 1.2rem 1.4rem;
-      transition: transform var(--transition-fast),
-        box-shadow var(--transition-fast), border-color var(--transition-fast);
+    .charter-nav-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
     }
 
-    .section-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
-      border-color: rgba(148, 163, 184, 0.8);
-    }
-
-    .section-header {
+    .charter-nav-list {
+      list-style: none;
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 0.6rem;
-      margin-bottom: 0.9rem;
-      cursor: default;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.9rem;
     }
 
-    .section-title {
-      font-size: 1.05rem;
-      font-weight: 700;
+    .charter-nav-list a {
+      text-decoration: none;
+      color: var(--text-muted);
+      padding: 0.36rem 0.65rem;
+      border-radius: 9px;
+      display: block;
+      transition:
+        background var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .charter-nav-list a:hover {
+      background: rgba(15, 23, 42, 0.96);
+      color: #e5f0ff;
+      transform: translateX(3px);
+    }
+
+    .charter-nav-list a span {
+      opacity: 0.8;
+    }
+
+    .charter-nav-list a strong {
+      font-weight: 600;
+    }
+
+    .charter-content {
+      max-height: calc(82vh - 72px);
+      overflow-y: auto;
+      padding-right: 0.4rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(148, 163, 184, 0.8) transparent;
+    }
+
+    .charter-content::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .charter-content::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.8);
+      border-radius: 999px;
+    }
+
+    .charter-section {
+      margin-bottom: 1.9rem;
+    }
+
+    .charter-section:last-of-type {
+      margin-bottom: 0.6rem;
+    }
+
+    .charter-section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .charter-section h3 {
+      font-size: 0.97rem;
+      margin-top: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .charter-section p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #d1d5db;
+    }
+
+    .charter-section ul {
+      margin-top: 0.45rem;
+      padding-left: 1.2rem;
+      font-size: 0.93rem;
+      color: #d1d5db;
+    }
+
+    .charter-section li + li {
+      margin-top: 0.2rem;
+    }
+
+    .pill-label {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      color: #0f172a;
-    }
-
-    .section-title::before {
-      content: "";
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--primary), #22c55e);
-    }
-
-    .section-tag {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      background: #f1f5f9;
+      gap: 0.3rem;
       padding: 0.2rem 0.6rem;
       border-radius: 999px;
-      border: 1px solid #e2e8f0;
-      white-space: nowrap;
+      font-size: 0.76rem;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
     }
 
-    /* ------------------------------
-       Accordions
-    --------------------------------*/
-    .accordion {
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      background: #f9fafb;
-    }
-
-    .accordion + .accordion {
-      margin-top: 0.6rem;
-    }
-
-    .accordion-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.6rem 0.85rem;
-      cursor: pointer;
-      background: #f9fafb;
-      transition: background var(--transition-fast);
-    }
-
-    .accordion-header:hover {
-      background: #eef2ff;
-    }
-
-    .accordion-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #111827;
-    }
-
-    .accordion-icon {
-      width: 22px;
-      height: 22px;
+    .pill-label span {
+      width: 7px;
+      height: 7px;
       border-radius: 999px;
-      border: 1px solid #cbd5f5;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      color: var(--primary);
-      background: #fff;
-      flex-shrink: 0;
-      transition: transform var(--transition-fast),
-        background var(--transition-fast), color var(--transition-fast);
+      background: var(--accent-color);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.9);
     }
 
-    .accordion.open .accordion-icon {
-      transform: rotate(90deg);
-      background: var(--primary);
-      color: #fff;
-      border-color: transparent;
-    }
-
-    .accordion-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.2s ease-out, padding 0.2s ease-out;
-      padding: 0 0.85rem;
-    }
-
-    .accordion.open .accordion-body {
-      padding: 0.6rem 0.85rem 0.7rem;
-    }
-
-    .accordion-content {
-      font-size: 0.9rem;
-      color: #111827;
-    }
-
-    .accordion-content p {
-      margin: 0.3rem 0;
-    }
-
-    /* ------------------------------
-       Tables (Responsive)
-    --------------------------------*/
+    /* Tables for stakeholders, deliverables, budget, WBS */
     .table-wrapper {
-      width: 100%;
-      overflow-x: auto;
       margin-top: 0.5rem;
       border-radius: var(--radius-md);
-      border: 1px solid var(--border);
-      background: #ffffff;
+      border: 1px solid rgba(30, 64, 175, 0.5);
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 70%),
+                  rgba(15, 23, 42, 0.96);
+      overflow: hidden;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 550px;
-      font-size: 0.82rem;
+      font-size: 0.87rem;
     }
 
-    th,
-    td {
-      border-bottom: 1px solid #e5e7eb;
-      padding: 0.45rem 0.55rem;
+    thead {
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    th, td {
+      padding: 0.45rem 0.65rem;
       text-align: left;
       vertical-align: top;
-      white-space: nowrap;
+      border-bottom: 1px solid rgba(30, 41, 59, 0.9);
     }
 
     th {
-      background: #f3f4f6;
-      font-weight: 700;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #6b7280;
+      font-weight: 600;
+      color: #e5e7eb;
+      white-space: nowrap;
     }
 
     tbody tr:nth-child(even) {
-      background: #f9fafb;
+      background: rgba(15, 23, 42, 0.92);
     }
 
-    tbody tr:hover {
-      background: #eef2ff;
+    /* Footer note */
+    .footer-note {
+      margin-top: 0.6rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: right;
     }
 
-    @media (max-width: 640px) {
-      .table-wrapper {
-        border-radius: 10px;
+    @media (max-width: 700px) {
+      body {
+        padding: 1.4rem 0.7rem;
       }
-      table {
-        min-width: 450px;
+
+      .charter-body {
+        padding: 1.3rem 1.2rem 1.4rem;
       }
-    }
 
-    /* ------------------------------
-       Timeline Placeholder
-    --------------------------------*/
-    .timeline-placeholder {
-      display: grid;
-      gap: 0.7rem;
-    }
+      .charter-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
 
-    .timeline-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.35rem 0.75rem;
-      border-radius: 999px;
-      background: #eff6ff;
-      border: 1px dashed #bfdbfe;
-      font-size: 0.8rem;
-      color: #1d4ed8;
-      width: fit-content;
-    }
-
-    .timeline-note {
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
-
-    /* ------------------------------
-       Misc
-    --------------------------------*/
-    .pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-top: 0.35rem;
-    }
-
-    .pill {
-      font-size: 0.78rem;
-      padding: 0.25rem 0.55rem;
-      border-radius: 999px;
-      background: #e5edff;
-      color: #1d4ed8;
-    }
-
-    .muted {
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-
-    .small-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 0.4rem;
-    }
-
-    .badge-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.78rem;
-      padding: 0.25rem 0.55rem;
-      border-radius: 999px;
-      background: #f3f4ff;
-      color: #4338ca;
+      .charter-tag {
+        align-self: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Sticky Navigation -->
-  <nav class="top-nav">
-    <div class="nav-inner">
-      <div class="nav-brand">Career Transition Charter</div>
-      <div class="nav-links">
-        <button class="nav-link active" data-target="section-title">
-          Title & Description
-        </button>
-        <button class="nav-link" data-target="section-vision">
-          Vision & Strategy
-        </button>
-        <button class="nav-link" data-target="section-business">
-          Business Case
-        </button>
-        <button class="nav-link" data-target="section-scope">Scope</button>
-        <button class="nav-link" data-target="section-stakeholders">
-          Stakeholders
-        </button>
-        <button class="nav-link" data-target="section-deliverables">
-          Deliverables
-        </button>
-        <button class="nav-link" data-target="section-wbs">WBS</button>
-        <button class="nav-link" data-target="section-methodology">
-          Methodology
-        </button>
-        <button class="nav-link" data-target="section-budget">Budget</button>
-        <button class="nav-link" data-target="section-timeline">
-          Timeline
-        </button>
+  <div class="page-shell">
+    <!-- Background title echoing the OS desktop -->
+    <div class="bg-title">
+      <h1>Help Desk to Analyst</h1>
+      <h2>Strategic Career Transition Project Charter</h2>
+    </div>
+
+    <div class="charter-window">
+      <header class="charter-header">
+        <div class="charter-header-left">
+          <div class="charter-icon-badge">PC</div>
+          <div class="charter-header-text">
+            <span>Project Charter</span>
+            <span>Help Desk to Analyst: Strategic Career Transition Project</span>
+          </div>
+        </div>
+        <div class="charter-tag">
+          CIS 4860 · Managing Information Systems · Fall 2025
+        </div>
+      </header>
+
+      <div class="charter-body">
+        <!-- Sidebar nav -->
+        <nav class="charter-nav" aria-label="Project Charter sections">
+          <div class="charter-nav-title">Sections</div>
+          <ul class="charter-nav-list">
+            <li><a href="#overview"><strong>01</strong> <span>Overview</span></a></li>
+            <li><a href="#alignment"><strong>02</strong> <span>Vision, Mission & Strategy</span></a></li>
+            <li><a href="#business-case"><strong>03</strong> <span>Business Case</span></a></li>
+            <li><a href="#scope"><strong>04</strong> <span>Scope</span></a></li>
+            <li><a href="#stakeholders"><strong>05</strong> <span>Stakeholders</span></a></li>
+            <li><a href="#deliverables"><strong>06</strong> <span>Deliverables</span></a></li>
+            <li><a href="#budget"><strong>07</strong> <span>Budget</span></a></li>
+            <li><a href="#wbs"><strong>08</strong> <span>Work Breakdown Structure</span></a></li>
+            <li><a href="#methodology"><strong>09</strong> <span>Methodology</span></a></li>
+          </ul>
+        </nav>
+
+        <!-- Main content -->
+        <main class="charter-content">
+          <!-- Overview -->
+          <section id="overview" class="charter-section">
+            <div class="pill-label"><span></span> Project Overview</div>
+            <h2>Project Title & Description</h2>
+
+            <h3>Title</h3>
+            <p><strong>Help Desk to Analyst: Strategic Career Transition Project</strong></p>
+
+            <h3>Project Overview</h3>
+            <p>
+              This project focuses on developing a structured plan to transition from a Help Desk role into a
+              Business/Data Analyst position. It will deliver a refined professional presence, targeted networking
+              efforts, insight gathered from industry professionals, and tailored application materials.
+              The result will be a clear and actionable pathway supporting my move into an analyst role.
+            </p>
+          </section>
+
+          <!-- Vision / Mission / Strategy Alignment -->
+          <section id="alignment" class="charter-section">
+            <div class="pill-label"><span></span> Vision, Mission & Strategy Alignment</div>
+            <h2>Vision, Mission & Strategy Alignment</h2>
+
+            <h3>Personal Mission Connection</h3>
+            <p>
+              My personal mission is to help bridge the gap between business and technology by creating clarity,
+              offering guidance, and improving systems. Moving into an analyst role expands this mission by allowing
+              me to use data-driven insights to support decisions and improve organizational outcomes. This project
+              directly advances the type of professional I strive to become.
+            </p>
+
+            <h3>Vision Alignment</h3>
+            <p>
+              My long-term vision is to build a career centered on analytical thinking, problem-solving,
+              and strategic contribution. Transitioning from Help Desk to an analyst role aligns with that vision
+              by positioning me in work that reflects my strengths and future goals. This project provides the
+              structure and direction needed to make that shift intentional and achievable.
+            </p>
+
+            <h3>Strategy Goal Support</h3>
+            <p>
+              This project supports my strategic goals by strengthening my professional brand, expanding my network,
+              and preparing targeted application materials. Each deliverable contributes directly to the skills and
+              visibility required for analyst roles. Together, these actions advance my overall career trajectory in a
+              focused and practical way.
+            </p>
+          </section>
+
+          <!-- Business Case -->
+          <section id="business-case" class="charter-section">
+            <div class="pill-label"><span></span> Business Case & Justification</div>
+            <h2>Business Case & Justification</h2>
+
+            <h3>Professional Value</h3>
+            <p>
+              Professionally, this project will enhance my competitiveness for Business/Data Analyst positions by
+              improving my LinkedIn presence, strengthening my network, and aligning my experience with industry
+              expectations. It directly supports my transition into a more analytical, growth-oriented career path.
+            </p>
+
+            <h3>Personal Value</h3>
+            <p>
+              Personally, this project gives me clarity, confidence, and direction as I pursue a role that better
+              fits my strengths and long-term goals. It also helps me develop habits of intentional career planning
+              and proactive skill development.
+            </p>
+
+            <h3>Learning Outcomes</h3>
+            <p>
+              Through this project, I will learn how to position myself for career advancement, engage effectively
+              with professionals in my desired field, and tailor application materials to analyst roles. I will also
+              gain insight into real-world expectations for analysts, helping me prepare for future opportunities.
+            </p>
+          </section>
+
+          <!-- Scope -->
+          <section id="scope" class="charter-section">
+            <div class="pill-label"><span></span> Scope Statement</div>
+            <h2>Scope Statement</h2>
+
+            <h3>In Scope</h3>
+            <ul>
+              <li>LinkedIn profile optimization</li>
+              <li>Targeted networking and organization research</li>
+              <li>Informational outreach and interviews</li>
+              <li>Documenting transferable skills</li>
+              <li>Tailoring resume and cover letter for analyst roles</li>
+              <li>Submitting initial analyst-focused job applications</li>
+            </ul>
+
+            <h3>Roadmap Items (Beyond Initial Scope)</h3>
+            <ul>
+              <li>Developing analytics skills (SQL, Excel, Python, Power BI/Tableau)</li>
+              <li>Completing relevant certifications or micro-courses</li>
+              <li>Building an analytics portfolio</li>
+              <li>Expanding applications to additional analyst roles</li>
+              <li>Continuing networking and informational interviews</li>
+            </ul>
+
+            <h3>Out of Scope</h3>
+            <ul>
+              <li>Applying to a master’s program in Data Analytics</li>
+              <li>Completing long-term certifications
+                (Google Data Analytics, Microsoft Power BI Data Analyst, CompTIA Data+)</li>
+              <li>Developing large-scale business applications</li>
+              <li>Creating a YouTube channel or podcast</li>
+            </ul>
+          </section>
+
+          <!-- Stakeholders -->
+          <section id="stakeholders" class="charter-section">
+            <div class="pill-label"><span></span> Stakeholders & Roles</div>
+            <h2>Stakeholders / Roles</h2>
+
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Stakeholder</th>
+                    <th>Category</th>
+                    <th>Role / Interest</th>
+                    <th>Power</th>
+                    <th>Interest</th>
+                    <th>Engagement Strategy</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Gio (Project Lead)</td>
+                    <td>Internal</td>
+                    <td>Executes all project tasks; primary beneficiary of career transition</td>
+                    <td>High</td>
+                    <td>High</td>
+                    <td>Active engagement, continuous self-review, weekly progress checks</td>
+                  </tr>
+                  <tr>
+                    <td>Professor / Advisor</td>
+                    <td>Internal</td>
+                    <td>Provides guidance, feedback, and academic evaluation</td>
+                    <td>High</td>
+                    <td>High</td>
+                    <td>Regular updates, share drafts, incorporate recommendations</td>
+                  </tr>
+                  <tr>
+                    <td>Career Services / Career Counselor</td>
+                    <td>External</td>
+                    <td>Offers resume, cover letter, and career transition support</td>
+                    <td>Low</td>
+                    <td>High</td>
+                    <td>
+                      Schedule review meetings, seek input on application materials
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Industry Professionals (LinkedIn)</td>
+                    <td>External</td>
+                    <td>Provide insights into analyst roles and career pathways</td>
+                    <td>Low</td>
+                    <td>High</td>
+                    <td>
+                      Personalized outreach, informational interviews, maintain professional rapport
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Target Employers (Organizations)</td>
+                    <td>External</td>
+                    <td>Potential future employers evaluating fit and readiness</td>
+                    <td>High</td>
+                    <td>Medium</td>
+                    <td>Tailored applications, strong LinkedIn presence, appropriate follow-up</td>
+                  </tr>
+                  <tr>
+                    <td>Mentor / Trusted Colleague</td>
+                    <td>Internal</td>
+                    <td>Provides practical advice and guidance on career transition</td>
+                    <td>Medium</td>
+                    <td>Medium</td>
+                    <td>Periodic check-ins, request input on deliverables</td>
+                  </tr>
+                  <tr>
+                    <td>Friends / Support Network</td>
+                    <td>Internal</td>
+                    <td>Offer emotional support and encouragement</td>
+                    <td>Low</td>
+                    <td>Medium</td>
+                    <td>Inform about goals, manage expectations, seek accountability</td>
+                  </tr>
+                  <tr>
+                    <td>Future Hiring Managers / Recruiters</td>
+                    <td>External</td>
+                    <td>Evaluate qualifications for analyst roles</td>
+                    <td>High</td>
+                    <td>Medium</td>
+                    <td>Submit polished materials, maintain professionalism, highlight skills</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="footer-note">Stakeholder Power–Interest grid available upon request.</p>
+          </section>
+
+          <!-- Deliverables -->
+          <section id="deliverables" class="charter-section">
+            <div class="pill-label"><span></span> Deliverables</div>
+            <h2>Project Deliverables</h2>
+
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Deliverable</th>
+                    <th>Type</th>
+                    <th>SMART Description</th>
+                    <th>Definition of Done</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Experience &amp; Skills Documentation</td>
+                    <td>Tangible</td>
+                    <td>
+                      Document transferable Help Desk accomplishments and map them to analyst competencies using
+                      concise, measurable statements.
+                    </td>
+                    <td>
+                      A completed list of quantified achievements and skill mappings is finalized and incorporated
+                      into LinkedIn and resume updates.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>LinkedIn Profile Optimization</td>
+                    <td>Tangible</td>
+                    <td>
+                      Update and refine LinkedIn profile to reflect analyst-focused skills, experience, and branding
+                      (headline, About, Experience, Skills).
+                    </td>
+                    <td>
+                      LinkedIn profile is fully updated, reviewed by professor/mentor, and aligned with
+                      Business/Data Analyst roles.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Targeted Networking &amp; Research</td>
+                    <td>Intangible</td>
+                    <td>
+                      Identify and engage with at least 10 professionals and 5 organizations related to analyst roles
+                      through LinkedIn and industry research.
+                    </td>
+                    <td>
+                      Documented list of contacts and organizations; 10+ connection attempts made; engagement activity
+                      tracked.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Informational Outreach &amp; Insights</td>
+                    <td>Intangible</td>
+                    <td>
+                      Conduct outreach to 3–5 professionals and complete at least one informational interview to gather
+                      role-specific insights.
+                    </td>
+                    <td>
+                      Outreach messages sent, at least one interview completed, and key takeaways documented.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tailored Resume &amp; Cover Letter</td>
+                    <td>Tangible</td>
+                    <td>
+                      Create a resume and cover letter tailored to analyst-focused roles, aligned with insights from
+                      research and interviews.
+                    </td>
+                    <td>
+                      Resume and cover letter drafts completed, reviewed for feedback, and finalized for submission.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Initial Analyst-Focused Job Applications</td>
+                    <td>Tangible</td>
+                    <td>
+                      Submit 2–3 applications for Business/Data Analyst roles or closely related positions identified
+                      during the project.
+                    </td>
+                    <td>
+                      Applications submitted, confirmations saved, and entries tracked in an application log.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Budget -->
+          <section id="budget" class="charter-section">
+            <div class="pill-label"><span></span> Budget Estimation</div>
+            <h2>Budget Estimation</h2>
+
+            <h3>Labor Costs</h3>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cost Item</th>
+                    <th>Hours</th>
+                    <th>Rate</th>
+                    <th>Total</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>LinkedIn Optimization</td>
+                    <td>4 hrs</td>
+                    <td>$25/hr</td>
+                    <td>$100</td>
+                    <td>Branding &amp; content</td>
+                  </tr>
+                  <tr>
+                    <td>Networking &amp; Research</td>
+                    <td>5 hrs</td>
+                    <td>$25/hr</td>
+                    <td>$125</td>
+                    <td>Contacts &amp; organization research</td>
+                  </tr>
+                  <tr>
+                    <td>Informational Outreach</td>
+                    <td>4 hrs</td>
+                    <td>$25/hr</td>
+                    <td>$100</td>
+                    <td>Interviews &amp; notes</td>
+                  </tr>
+                  <tr>
+                    <td>Resume &amp; Cover Letter Tailoring</td>
+                    <td>4 hrs</td>
+                    <td>$25/hr</td>
+                    <td>$100</td>
+                    <td>Draft + review</td>
+                  </tr>
+                  <tr>
+                    <td>Experience &amp; Skills Documentation</td>
+                    <td>3 hrs</td>
+                    <td>$25/hr</td>
+                    <td>$75</td>
+                    <td>Bullet bank</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Labor Subtotal</strong></td>
+                    <td></td><td></td>
+                    <td><strong>$500</strong></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Equipment / Software</h3>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Rate</th>
+                    <th>Total</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Asana Subscription</td>
+                    <td>2 months</td>
+                    <td>$30/mo</td>
+                    <td>$60</td>
+                    <td>Project management</td>
+                  </tr>
+                  <tr>
+                    <td>ChatGPT Plus</td>
+                    <td>2 months</td>
+                    <td>$20/mo</td>
+                    <td>$40</td>
+                    <td>Research + writing support</td>
+                  </tr>
+                  <tr>
+                    <td>BetterPic Professional Headshot</td>
+                    <td>1</td>
+                    <td>$40</td>
+                    <td>$40</td>
+                    <td>LinkedIn photo</td>
+                  </tr>
+                  <tr>
+                    <td>Business Cards</td>
+                    <td>100</td>
+                    <td>$30</td>
+                    <td>$30</td>
+                    <td>Networking</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Equipment/Software Subtotal</strong></td>
+                    <td></td><td></td>
+                    <td><strong>$170</strong></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Materials</h3>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Rate</th>
+                    <th>Total</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Notebook / Journal</td>
+                    <td>1</td>
+                    <td>$5</td>
+                    <td>$5</td>
+                    <td>Interview notes</td>
+                  </tr>
+                  <tr>
+                    <td>Printing (optional)</td>
+                    <td>10 pages</td>
+                    <td>$0.10/page</td>
+                    <td>$1</td>
+                    <td>Resume drafts</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Materials Subtotal</strong></td>
+                    <td></td><td></td>
+                    <td><strong>$6</strong></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Services</h3>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Service</th>
+                    <th>Quantity</th>
+                    <th>Rate</th>
+                    <th>Total</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Resume Review (Career Center)</td>
+                    <td>1</td>
+                    <td>$0</td>
+                    <td>$0</td>
+                    <td>Free</td>
+                  </tr>
+                  <tr>
+                    <td>Mock Interview</td>
+                    <td>1</td>
+                    <td>$0</td>
+                    <td>$0</td>
+                    <td>Free</td>
+                  </tr>
+                  <tr>
+                    <td>Transportation (optional)</td>
+                    <td>1 trip</td>
+                    <td>$15</td>
+                    <td>$15</td>
+                    <td>For in-person meetings</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Services Subtotal</strong></td>
+                    <td></td><td></td>
+                    <td><strong>$15</strong></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p style="margin-top:0.8rem;font-size:0.9rem;color:#e5e7eb;">
+              <strong>Subtotal Direct Costs:</strong> $691 &nbsp;·&nbsp;
+              <strong>Contingency Reserve (20%):</strong> $138.20 &nbsp;·&nbsp;
+              <strong>Total Project Budget:</strong> $829.20
+            </p>
+
+            <h3 style="margin-top:1.2rem;">Budget Breakdown Percentages</h3>
+            <ul>
+              <li>Labor: $500 (~60.3%)</li>
+              <li>Equipment/Software: $170 (~20.5%)</li>
+              <li>Materials: $6 (~0.7%)</li>
+              <li>Services: $15 (~1.8%)</li>
+              <li>Contingency Reserve: $138.20 (~16.7%)</li>
+            </ul>
+          </section>
+
+          <!-- WBS -->
+          <section id="wbs" class="charter-section">
+            <div class="pill-label"><span></span> Work Breakdown Structure</div>
+            <h2>Work Breakdown Structure (WBS)</h2>
+
+            <h3>Deliverable 1 – Experience &amp; Skills Documentation</h3>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>WBS ID</th>
+                    <th>Level</th>
+                    <th>Name</th>
+                    <th>Duration</th>
+                    <th>Dependencies</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1.0</td><td>Deliverable</td><td>Experience &amp; Skills Documentation</td><td>0.4 days</td><td>—</td></tr>
+                  <tr><td>1.1</td><td>Task</td><td>List Help Desk responsibilities</td><td>0.1 days</td><td>—</td></tr>
+                  <tr><td>1.2</td><td>Task</td><td>Translate responsibilities into accomplishment statements</td><td>0.1 days</td><td>1.1</td></tr>
+                  <tr><td>1.3</td><td>Task</td><td>Quantify accomplishments</td><td>0.1 days</td><td>1.2</td></tr>
+                  <tr><td>1.4</td><td>Task</td><td>Map Help Desk skills → Analyst competencies</td><td>0.05 days</td><td>1.3</td></tr>
+                  <tr><td>1.5</td><td>Task</td><td>Create bullet point bank (STAR format where needed)</td><td>0.05 days</td><td>1.1–1.4</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 style="margin-top:1.2rem;">Deliverable 2 – LinkedIn Profile Optimization</h3>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>WBS ID</th>
+                    <th>Level</th>
+                    <th>Name</th>
+                    <th>Duration</th>
+                    <th>Dependencies</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>2.0</td><td>Deliverable</td><td>LinkedIn Profile Optimization</td><td>0.5 days</td><td>1.0</td></tr>
+                  <tr><td>2.1</td><td>Task</td><td>Review current LinkedIn profile</td><td>0.1 days</td><td>—</td></tr>
+                  <tr><td>2.2</td><td>Task</td><td>Update profile photo &amp; banner</td><td>0.1 days</td><td>—</td></tr>
+                  <tr><td>2.3</td><td>Task</td><td>Rewrite headline</td><td>0.1 days</td><td>—</td></tr>
+                  <tr><td>2.4</td><td>Task</td><td>Rewrite About section</td><td>0.1 days</td><td>1.0</td></tr>
+                  <tr><td>2.5</td><td>Task</td><td>Update Experience section with quantified results</td><td>0.2 days</td><td>1.0</td></tr>
+                  <tr><td>2.6</td><td>Task</td><td>Add relevant skills</td><td>0.05 days</td><td>—</td></tr>
+                  <tr><td>2.7</td><td>Task</td><td>Request endorsements/recommendations</td><td>0.05 days</td><td>—</td></tr>
+                  <tr><td>2.8</td><td>Task</td><td>Final review with professor/mentor</td><td>0.1 days</td><td>2.1–2.7</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 style="margin-top:1.2rem;">Deliverable 3 – Targeted Networking &amp; Research</h3>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>WBS ID</th>
+                    <th>Level</th>
+                    <th>Name</th>
+                    <th>Duration</th>
+                    <th>Dependencies</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>3.0</td><td>Deliverable</td><td>Targeted Networking &amp; Research</td><td>0.6 days</td><td>2.0</td></tr>
+                  <tr><td>3.1</td><td>Task</td><td>Identify target industries</td><td>0.1 days</td><td>—</td></tr>
+                  <tr><td>3.2</td><td>Task</td><td>Research 5+ organizations</td><td>0.15 days</td><td>—</td></tr>
+                  <tr><td>3.3</td><td>Task</td><td>Create tracking sheet</td><td>0.05 days</td><td>—</td></tr>
+                  <tr><td>3.4</td><td>Task</td><td>Identify 10–15 professionals</td><td>0.1 days</td><td>3.3</td></tr>
+                  <tr><td>3.5</td><td>Task</td><td>Draft connection message</td><td>0.05 days</td><td>—</td></tr>
+                  <tr><td>3.6</td><td>Task</td><td>Send 10+ connection requests</td><td>0.1 days</td><td>3.5</td></tr>
+                  <tr><td>3.7</td><td>Task</td><td>Engage with posts (3–5 per week)</td><td>0.05 days</td><td>2.0</td></tr>
+                  <tr><td>3.8</td><td>Task</td><td>Track responses and interactions</td><td>0.05 days</td><td>3.6</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 style="margin-top:1.2rem;">Deliverable 4 – Informational Outreach &amp; Insights</h3>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>WBS ID</th>
+                    <th>Level</th>
+                    <th>Name</th>
+                    <th>Duration</th>
+                    <th>Dependencies</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>4.0</td><td>Deliverable</td><td>Informational Outreach &amp; Insights</td><td>0.5 days</td><td>3.0</td></tr>
+                  <tr><td>4.1</td><td>Task</td><td>Draft outreach message</td><td>0.05 days</td><td>—</td></tr>
+                  <tr><td>4.2</td><td>Task</td><td>Prepare question list</td><td>0.05 days</td><td>—</td></tr>
+                  <tr><td>4.3</td><td>Task</td><td>Send outreach messages (3–5)</td><td>0.1 days</td><td>4.1</td></tr>
+                  <tr><td>4.4</td><td>Task</td><td>Schedule informational interview(s)</td><td>0.05 days</td><td>4.3</td></tr>
+                  <tr><td>4.5</td><td>Task</td><td>Conduct interview</td><td>0.15 days</td><td>4.4</td></tr>
+                  <tr><td>4.6</td><td>Task</td><td>Document insights and takeaways</td><td>0.1 days</td><td>4.5</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 style="margin-top:1.2rem;">Deliverable 5 – Tailored Resume &amp; Cover Letter</h3>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>WBS ID</th>
+                    <th>Level</th>
+                    <th>Name</th>
+                    <th>Duration</th>
+                    <th>Dependencies</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>5.0</td><td>Deliverable</td><td>Tailored Resume &amp; Cover Letter</td><td>0.5 days</td><td>1.0, 4.0</td></tr>
+                  <tr><td>5.1</td><td>Task</td><td>Select resume template</td><td>0.05 days</td><td>—</td></tr>
+                  <tr><td>5.2</td><td>Task</td><td>Draft resume using experience bank</td><td>0.15 days</td><td>1.0</td></tr>
+                  <tr><td>5.3</td><td>Task</td><td>Tailor resume to specific posting</td><td>0.1 days</td><td>5.2</td></tr>
+                  <tr><td>5.4</td><td>Task</td><td>Draft cover letter</td><td>0.1 days</td><td>—</td></tr>
+                  <tr><td>5.5</td><td>Task</td><td>Customize cover letter paragraphs</td><td>0.05 days</td><td>5.4</td></tr>
+                  <tr><td>5.6</td><td>Task</td><td>Review with professor/mentor</td><td>0.05 days</td><td>5.1–5.5</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 style="margin-top:1.2rem;">Deliverable 6 – Initial Analyst-Focused Job Applications</h3>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>WBS ID</th>
+                    <th>Level</th>
+                    <th>Name</th>
+                    <th>Duration</th>
+                    <th>Dependencies</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>6.0</td><td>Deliverable</td><td>Analyst Job Applications</td><td>0.4 days</td><td>5.0</td></tr>
+                  <tr><td>6.1</td><td>Task</td><td>Identify 3 job postings</td><td>0.1 days</td><td>—</td></tr>
+                  <tr><td>6.2</td><td>Task</td><td>Customize resume for each posting</td><td>0.15 days</td><td>5.0</td></tr>
+                  <tr><td>6.3</td><td>Task</td><td>Customize cover letter</td><td>0.1 days</td><td>5.0</td></tr>
+                  <tr><td>6.4</td><td>Task</td><td>Submit applications</td><td>0.05 days</td><td>6.2–6.3</td></tr>
+                  <tr><td>6.5</td><td>Task</td><td>Track confirmations and responses</td><td>0.05 days</td><td>6.4</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Methodology -->
+          <section id="methodology" class="charter-section">
+            <div class="pill-label"><span></span> Methodology / Approach</div>
+            <h2>Methodology / Approach</h2>
+
+            <h3>Agile-Lite, Single Iteration</h3>
+            <p>
+              This project will follow an Agile-Lite methodology using a single, focused iteration —
+              essentially “one iteration because my life is on fire.” Instead of multiple sprints, I will work
+              through one compressed cycle that includes planning, execution, feedback, and refinement.
+              The focus is on delivering usable career assets (LinkedIn profile, networking activities, resume,
+              and applications) within a short time frame while remaining flexible to feedback from my professor
+              and professional contacts.
+            </p>
+
+            <h3>Methodology Justification</h3>
+            <ul>
+              <li><strong>Time constraints:</strong> With only one week remaining, a traditional multi-sprint
+                approach would create unnecessary overhead. A single Agile-Lite iteration allows me to focus on
+                completing the most valuable work efficiently.</li>
+              <li><strong>Need for flexibility:</strong> This project depends on real-world interactions
+                (networking and informational outreach) that may change based on responses and availability.
+                Agile-Lite supports adapting priorities as I receive feedback or new information.</li>
+              <li><strong>Value-focused delivery:</strong> The methodology emphasizes producing working
+                increments of value—an updated LinkedIn profile, documented skills, resume, and real job
+                applications—rather than heavy documentation or rigid phase gates. This aligns directly with
+                the goal of transitioning into a Business/Data Analyst role.</li>
+            </ul>
+
+            <p style="margin-top:0.9rem;font-size:0.85rem;color:var(--text-muted);">
+              Methodology diagram: can be added as a visual (e.g., simple linear Agile-Lite flow) in future
+              iterations of this page.
+            </p>
+          </section>
+
+          <p class="footer-note">
+            Prepared by Giovanni Muñoz · Help Desk to Analyst – Strategic Career Transition Project
+          </p>
+        </main>
       </div>
     </div>
-  </nav>
-
-  <main>
-    <!-- Hero / Project Title & Description -->
-    <section id="section-title">
-      <div class="hero">
-        <div>
-          <h1 class="hero-title">
-            Help Desk to Analyst: Strategic Career Transition Project
-          </h1>
-          <p class="hero-subtitle">
-            This project focuses on developing a structured plan to transition
-            from a Help Desk role into a Business/Data Analyst position. It will
-            deliver a refined professional presence, targeted networking
-            efforts, insight gathered from industry professionals, and tailored
-            application materials. The result will be a clear and actionable
-            pathway supporting my move into an analyst role.
-          </p>
-          <div class="hero-badges">
-            <span class="badge">Career Transition</span>
-            <span class="badge">Business & Data Analytics</span>
-            <span class="badge">Professional Development</span>
-          </div>
-        </div>
-        <aside class="hero-card">
-          <div class="hero-card-title">Project Snapshot</div>
-          <div class="hero-meta">
-            <div>
-              <div class="meta-label">From Role</div>
-              <div class="meta-value">Help Desk</div>
-            </div>
-            <div>
-              <div class="meta-label">Target Role</div>
-              <div class="meta-value">Business / Data Analyst</div>
-            </div>
-            <div>
-              <div class="meta-label">Focus</div>
-              <div class="meta-value">Branding, Networking, Applications</div>
-            </div>
-            <div>
-              <div class="meta-label">Project Type</div>
-              <div class="meta-value">Strategic Career Transition</div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- Vision, Mission, Strategy Alignment -->
-    <section id="section-vision">
-      <div class="section-card">
-        <div class="section-header">
-          <h2 class="section-title">Vision, Mission, and Strategy Alignment</h2>
-          <span class="section-tag">Vision & Strategy</span>
-        </div>
-
-        <div class="accordion open">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="true"
-          >
-            <span class="accordion-title">Personal Mission Connection</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="false">
-            <div class="accordion-content">
-              <p>
-                My personal mission is to help bridge the gap between business
-                and technology by creating clarity, offering guidance, and
-                improving systems. Moving into an analyst role expands this
-                mission by allowing me to use data-driven insights to support
-                decisions and improve organizational outcomes. This project
-                directly advances the type of professional I strive to become.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">Vision Alignment</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <p>
-                My long-term vision is to build a career centered on analytical
-                thinking, problem-solving, and strategic contribution.
-                Transitioning from Help Desk to an analyst role aligns with that
-                vision by positioning me in work that reflects my strengths and
-                future goals. This project provides the structure and direction
-                needed to make that shift intentional and achievable.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">Strategy Goal Support</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <p>
-                This project supports my strategic goals by strengthening my
-                professional brand, expanding my network, and preparing targeted
-                application materials. Each deliverable contributes directly to
-                the skills and visibility required for analyst roles. Together,
-                these actions advance my overall career trajectory in a focused
-                and practical way.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Business Case & Justification -->
-    <section id="section-business">
-      <div class="section-card">
-        <div class="section-header">
-          <h2 class="section-title">Business Case &amp; Justification</h2>
-          <span class="section-tag">Value & Outcomes</span>
-        </div>
-
-        <div class="accordion open">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="true"
-          >
-            <span class="accordion-title">Professional Value</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="false">
-            <div class="accordion-content">
-              <p>
-                Professionally, this project will enhance my competitiveness for
-                Business/Data Analyst positions by improving my LinkedIn
-                presence, strengthening my network, and aligning my experience
-                with industry expectations. It directly supports my transition
-                into a more analytical, growth-oriented career path.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">Personal Value</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <p>
-                Personally, this project gives me clarity, confidence, and
-                direction as I pursue a role that better fits my strengths and
-                long-term goals. It also helps me develop habits of intentional
-                career planning and proactive skill development.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">Learning Outcomes</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <p>
-                Through this project, I will learn how to position myself for
-                career advancement, engage effectively with professionals in my
-                desired field, and tailor application materials to analyst
-                roles. I will also gain insight into real-world expectations for
-                analysts, helping me prepare for future opportunities.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- High-Level Scope -->
-    <section id="section-scope">
-      <div class="section-card">
-        <div class="section-header">
-          <h2 class="section-title">High-Level Scope</h2>
-          <span class="section-tag">Scope Statement</span>
-        </div>
-
-        <div class="accordion open">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="true"
-          >
-            <span class="accordion-title">In Scope</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="false">
-            <div class="accordion-content">
-              <ul>
-                <li>LinkedIn profile optimization</li>
-                <li>Targeted networking and organization research</li>
-                <li>Informational outreach and interviews</li>
-                <li>Documenting transferable skills</li>
-                <li>Tailoring resume and cover letter for analyst roles</li>
-                <li>Submitting initial analyst-focused job applications</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">Roadmap Items</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <ul>
-                <li>Developing analytics skills (SQL, Excel, Python, Power BI/Tableau)</li>
-                <li>Completing relevant certifications or micro-courses</li>
-                <li>Building an analytics portfolio</li>
-                <li>Expanding applications to additional analyst roles</li>
-                <li>Continuing networking and informational interviews</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">Out of Scope</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <ul>
-                <li>Applying to master’s program in Data Analytics</li>
-                <li>
-                  Completing long-term certifications (Google Data Analytics,
-                  Microsoft: Power BU Data Analyst, CompTIA Data+)
-                </li>
-                <li>Develop large-scale business applications</li>
-                <li>Creating a YouTube channel or podcast</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Stakeholder Register -->
-    <section id="section-stakeholders">
-      <div class="section-card">
-        <div class="section-header">
-          <h2 class="section-title">Stakeholder Register</h2>
-          <span class="section-tag">Stakeholders & Engagement</span>
-        </div>
-
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Stakeholder</th>
-                <th>Category</th>
-                <th>Role / Interest</th>
-                <th>Power</th>
-                <th>Interest</th>
-                <th>Engagement Strategy</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Gio (Project Lead)</td>
-                <td>Internal</td>
-                <td>Executes all project tasks; primary beneficiary of career transition</td>
-                <td>High</td>
-                <td>High</td>
-                <td>Active engagement, continuous self-review, weekly progress checks</td>
-              </tr>
-              <tr>
-                <td>Professor / Advisor</td>
-                <td>Internal</td>
-                <td>Provides guidance, feedback, and academic evaluation of the project</td>
-                <td>High</td>
-                <td>High</td>
-                <td>Regular updates, share drafts for feedback, incorporate recommendations</td>
-              </tr>
-              <tr>
-                <td>Career Services / Career Counselor</td>
-                <td>External</td>
-                <td>Offers resume, cover letter, and career transition support</td>
-                <td>Low</td>
-                <td>High</td>
-                <td>Schedule review meetings, seek input on application materials</td>
-              </tr>
-              <tr>
-                <td>Industry Professionals (LinkedIn Connections)</td>
-                <td>External</td>
-                <td>Provide insights into analyst roles and career pathways</td>
-                <td>Low</td>
-                <td>High</td>
-                <td>Personalized outreach, informational interviews, maintain professional rapport</td>
-              </tr>
-              <tr>
-                <td>Target Employers (Organizations)</td>
-                <td>External</td>
-                <td>Potential future employers evaluating fit and readiness</td>
-                <td>High</td>
-                <td>Medium</td>
-                <td>
-                  Tailored applications, maintain professional LinkedIn presence,
-                  follow up appropriately
-                </td>
-              </tr>
-              <tr>
-                <td>Mentor / Trusted Colleague</td>
-                <td>Internal</td>
-                <td>Provides practical advice and guidance on career transition</td>
-                <td>Medium</td>
-                <td>Medium</td>
-                <td>Periodic check-ins, discuss progress, request input on deliverables</td>
-              </tr>
-              <tr>
-                <td>Friends / Support Network</td>
-                <td>Internal</td>
-                <td>Offer emotional support and encouragement</td>
-                <td>Low</td>
-                <td>Medium</td>
-                <td>
-                  Inform about project goals, manage expectations, seek accountability
-                  when needed
-                </td>
-              </tr>
-              <tr>
-                <td>Future Hiring Managers / Recruiters</td>
-                <td>External</td>
-                <td>Evaluate qualifications for analyst roles during applications</td>
-                <td>High</td>
-                <td>Medium</td>
-                <td>
-                  Submit polished materials, maintain professionalism, highlight
-                  transferable skills
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <p class="small-note">Stakeholder Power-Interest Grid</p>
-      </div>
-    </section>
-
-    <!-- Deliverables & Definition of Done -->
-    <section id="section-deliverables">
-      <div class="section-card">
-        <div class="section-header">
-          <h2 class="section-title">Deliverables &amp; Definition of Done</h2>
-          <span class="section-tag">Outputs & Completion Criteria</span>
-        </div>
-
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Deliverable Name</th>
-                <th>Type</th>
-                <th>SMART Description</th>
-                <th>Definition of Done</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Experience &amp; Skills Documentation</td>
-                <td>Tangible</td>
-                <td>
-                  Document transferable Help Desk accomplishments and map them to
-                  analyst competencies using concise, measurable statements.
-                </td>
-                <td>
-                  A completed list of quantified achievements and skill mappings
-                  is finalized and incorporated into LinkedIn and resume updates.
-                </td>
-              </tr>
-              <tr>
-                <td>LinkedIn Profile Optimization</td>
-                <td>Tangible</td>
-                <td>
-                  Update and refine my LinkedIn profile to reflect
-                  analyst-focused skills, experience, and branding by improving
-                  the headline, About section, Experience entries, and Skills
-                  list.
-                </td>
-                <td>
-                  LinkedIn profile is fully updated, reviewed by professor/mentor,
-                  and reflects alignment with Business/Data Analyst roles.
-                </td>
-              </tr>
-              <tr>
-                <td>Targeted Networking &amp; Research</td>
-                <td>Intangible</td>
-                <td>
-                  Identify and engage with at least 10 professionals and 5
-                  organizations related to analyst roles through LinkedIn and
-                  industry research.
-                </td>
-                <td>
-                  A documented list of contacts and organizations is created; 10+
-                  connection attempts are made; engagement activity is tracked.
-                </td>
-              </tr>
-              <tr>
-                <td>Informational Outreach &amp; Insights</td>
-                <td>Intangible</td>
-                <td>
-                  Conduct outreach to 3–5 professionals and complete at least one
-                  informational interview to gather role-specific insights.
-                </td>
-                <td>
-                  Outreach messages sent, at least one interview completed, and
-                  key takeaways documented in project notes.
-                </td>
-              </tr>
-              <tr>
-                <td>Tailored Resume &amp; Cover Letter</td>
-                <td>Tangible</td>
-                <td>
-                  Create a resume and cover letter tailored to analyst-focused
-                  roles, aligned with insights gathered through research and
-                  interviews.
-                </td>
-                <td>
-                  Resume and cover letter drafts are completed, reviewed for
-                  feedback, and finalized for job submission.
-                </td>
-              </tr>
-              <tr>
-                <td>Initial Analyst-Focused Job Applications</td>
-                <td>Tangible</td>
-                <td>
-                  Submit 2–3 applications for Business/Data Analyst roles or
-                  closely related positions identified during the project.
-                </td>
-                <td>
-                  Applications are submitted, confirmations saved, and entries
-                  tracked in an application log.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- Work Breakdown Structure (WBS) -->
-    <section id="section-wbs">
-      <div class="section-card">
-        <div class="section-header">
-          <h2 class="section-title">Work Breakdown Structure (WBS)</h2>
-          <span class="section-tag">Structure & Tasks</span>
-        </div>
-
-        <!-- Deliverable 1 -->
-        <div class="accordion open">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="true"
-          >
-            <span class="accordion-title">
-              Deliverable 1 – Experience &amp; Skills Documentation
-            </span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="false">
-            <div class="accordion-content">
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>WBS ID</th>
-                      <th>Level</th>
-                      <th>Name</th>
-                      <th>Duration</th>
-                      <th>Dependencies</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1.0</td>
-                      <td>Deliverable</td>
-                      <td>Experience &amp; Skills Documentation</td>
-                      <td>0.4 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>1.1</td>
-                      <td>Task</td>
-                      <td>List Help Desk responsibilities</td>
-                      <td>0.1 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>1.2</td>
-                      <td>Task</td>
-                      <td>Translate responsibilities into accomplishment statements</td>
-                      <td>0.1 days</td>
-                      <td>1.1</td>
-                    </tr>
-                    <tr>
-                      <td>1.3</td>
-                      <td>Task</td>
-                      <td>Quantify accomplishments</td>
-                      <td>0.1 days</td>
-                      <td>1.2</td>
-                    </tr>
-                    <tr>
-                      <td>1.4</td>
-                      <td>Task</td>
-                      <td>Map Help Desk skills → Analyst competencies</td>
-                      <td>0.05 days</td>
-                      <td>1.3</td>
-                    </tr>
-                    <tr>
-                      <td>1.5</td>
-                      <td>Task</td>
-                      <td>
-                        Create bullet point bank (STAR format where needed)
-                      </td>
-                      <td>0.05 days</td>
-                      <td>1.1–1.4</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Deliverable 2 -->
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">
-              Deliverable 2 – LinkedIn Profile Optimization
-            </span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>WBS ID</th>
-                      <th>Level</th>
-                      <th>Name</th>
-                      <th>Duration</th>
-                      <th>Dependencies</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>2.0</td>
-                      <td>Deliverable</td>
-                      <td>LinkedIn Profile Optimization</td>
-                      <td>0.5 days</td>
-                      <td>1.0 Experience &amp; Skills</td>
-                    </tr>
-                    <tr>
-                      <td>2.1</td>
-                      <td>Task</td>
-                      <td>Review current LinkedIn profile</td>
-                      <td>0.1 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>2.2</td>
-                      <td>Task</td>
-                      <td>Update profile photo &amp; banner</td>
-                      <td>0.1 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>2.3</td>
-                      <td>Task</td>
-                      <td>Rewrite headline</td>
-                      <td>0.1 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>2.4</td>
-                      <td>Task</td>
-                      <td>Rewrite About section</td>
-                      <td>0.1 days</td>
-                      <td>1.0</td>
-                    </tr>
-                    <tr>
-                      <td>2.5</td>
-                      <td>Task</td>
-                      <td>Update Experience section with quantified results</td>
-                      <td>0.2 days</td>
-                      <td>1.0</td>
-                    </tr>
-                    <tr>
-                      <td>2.6</td>
-                      <td>Task</td>
-                      <td>Add relevant skills</td>
-                      <td>0.05 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>2.7</td>
-                      <td>Task</td>
-                      <td>Request endorsements/recommendations</td>
-                      <td>0.05 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>2.8</td>
-                      <td>Task</td>
-                      <td>Final review with professor/mentor</td>
-                      <td>0.1 days</td>
-                      <td>2.1–2.7</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Deliverable 3 -->
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">
-              Deliverable 3 – Targeted Networking &amp; Research
-            </span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>WBS ID</th>
-                      <th>Level</th>
-                      <th>Name</th>
-                      <th>Duration</th>
-                      <th>Dependencies</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>3.0</td>
-                      <td>Deliverable</td>
-                      <td>Targeted Networking &amp; Research</td>
-                      <td>0.6 days</td>
-                      <td>2.0 LinkedIn Profile</td>
-                    </tr>
-                    <tr>
-                      <td>3.1</td>
-                      <td>Task</td>
-                      <td>Identify target industries</td>
-                      <td>0.1 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>3.2</td>
-                      <td>Task</td>
-                      <td>Research 5+ organizations</td>
-                      <td>0.15 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>3.3</td>
-                      <td>Task</td>
-                      <td>Create tracking sheet</td>
-                      <td>0.05 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>3.4</td>
-                      <td>Task</td>
-                      <td>Identify 10–15 professionals</td>
-                      <td>0.1 days</td>
-                      <td>3.3</td>
-                    </tr>
-                    <tr>
-                      <td>3.5</td>
-                      <td>Task</td>
-                      <td>Draft connection message</td>
-                      <td>0.05 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>3.6</td>
-                      <td>Task</td>
-                      <td>Send 10+ connection requests</td>
-                      <td>0.1 days</td>
-                      <td>3.5</td>
-                    </tr>
-                    <tr>
-                      <td>3.7</td>
-                      <td>Task</td>
-                      <td>Engage with posts (3–5 per week)</td>
-                      <td>0.05 days</td>
-                      <td>2.0</td>
-                    </tr>
-                    <tr>
-                      <td>3.8</td>
-                      <td>Task</td>
-                      <td>Track responses and interactions</td>
-                      <td>0.05 days</td>
-                      <td>3.6</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Deliverable 4 -->
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">
-              Deliverable 4 – Informational Outreach &amp; Insights
-            </span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>WBS ID</th>
-                      <th>Level</th>
-                      <th>Name</th>
-                      <th>Duration</th>
-                      <th>Dependencies</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>4.0</td>
-                      <td>Deliverable</td>
-                      <td>Informational Outreach &amp; Insights</td>
-                      <td>0.5 days</td>
-                      <td>3.0 Networking</td>
-                    </tr>
-                    <tr>
-                      <td>4.1</td>
-                      <td>Task</td>
-                      <td>Draft outreach message</td>
-                      <td>0.05 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>4.2</td>
-                      <td>Task</td>
-                      <td>Prepare question list</td>
-                      <td>0.05 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>4.3</td>
-                      <td>Task</td>
-                      <td>Send outreach messages (3–5)</td>
-                      <td>0.1 days</td>
-                      <td>4.1</td>
-                    </tr>
-                    <tr>
-                      <td>4.4</td>
-                      <td>Task</td>
-                      <td>Schedule informational interview(s)</td>
-                      <td>0.05 days</td>
-                      <td>4.3</td>
-                    </tr>
-                    <tr>
-                      <td>4.5</td>
-                      <td>Task</td>
-                      <td>Conduct interview</td>
-                      <td>0.15 days</td>
-                      <td>4.4</td>
-                    </tr>
-                    <tr>
-                      <td>4.6</td>
-                      <td>Task</td>
-                      <td>Document insights and takeaways</td>
-                      <td>0.1 days</td>
-                      <td>4.5</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Deliverable 5 -->
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">
-              Deliverable 5 – Tailored Resume &amp; Cover Letter
-            </span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>WBS ID</th>
-                      <th>Level</th>
-                      <th>Name</th>
-                      <th>Duration</th>
-                      <th>Dependencies</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>5.0</td>
-                      <td>Deliverable</td>
-                      <td>Tailored Resume &amp; Cover Letter</td>
-                      <td>0.5 days</td>
-                      <td>1.0 Experience Documentation, 4.0 Insights</td>
-                    </tr>
-                    <tr>
-                      <td>5.1</td>
-                      <td>Task</td>
-                      <td>Select resume template</td>
-                      <td>0.05 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>5.2</td>
-                      <td>Task</td>
-                      <td>Draft resume using experience bank</td>
-                      <td>0.15 days</td>
-                      <td>1.0</td>
-                    </tr>
-                    <tr>
-                      <td>5.3</td>
-                      <td>Task</td>
-                      <td>Tailor resume to specific job posting</td>
-                      <td>0.1 days</td>
-                      <td>5.2</td>
-                    </tr>
-                    <tr>
-                      <td>5.4</td>
-                      <td>Task</td>
-                      <td>Draft cover letter</td>
-                      <td>0.1 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>5.5</td>
-                      <td>Task</td>
-                      <td>Customize cover letter paragraph(s)</td>
-                      <td>0.05 days</td>
-                      <td>5.4</td>
-                    </tr>
-                    <tr>
-                      <td>5.6</td>
-                      <td>Task</td>
-                      <td>Review with professor/mentor</td>
-                      <td>0.05 days</td>
-                      <td>5.1–5.5</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Deliverable 6 -->
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">
-              Deliverable 6 – Initial Analyst-Focused Job Applications
-            </span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>WBS ID</th>
-                      <th>Level</th>
-                      <th>Name</th>
-                      <th>Duration</th>
-                      <th>Dependencies</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>6.0</td>
-                      <td>Deliverable</td>
-                      <td>Analyst Job Applications</td>
-                      <td>0.4 days</td>
-                      <td>5.0 Resume &amp; Cover Letter</td>
-                    </tr>
-                    <tr>
-                      <td>6.1</td>
-                      <td>Task</td>
-                      <td>Identify 3 job postings</td>
-                      <td>0.1 days</td>
-                      <td>—</td>
-                    </tr>
-                    <tr>
-                      <td>6.2</td>
-                      <td>Task</td>
-                      <td>Customize resume for each posting</td>
-                      <td>0.15 days</td>
-                      <td>5.0</td>
-                    </tr>
-                    <tr>
-                      <td>6.3</td>
-                      <td>Task</td>
-                      <td>Customize cover letter</td>
-                      <td>0.1 days</td>
-                      <td>5.0</td>
-                    </tr>
-                    <tr>
-                      <td>6.4</td>
-                      <td>Task</td>
-                      <td>Submit applications</td>
-                      <td>0.05 days</td>
-                      <td>6.2–6.3</td>
-                    </tr>
-                    <tr>
-                      <td>6.5</td>
-                      <td>Task</td>
-                      <td>Track confirmations and responses</td>
-                      <td>0.05 days</td>
-                      <td>6.4</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Methodology & Diagram -->
-    <section id="section-methodology">
-      <div class="section-card">
-        <div class="section-header">
-          <h2 class="section-title">Methodology &amp; Diagram</h2>
-          <span class="section-tag">Agile-Lite Approach</span>
-        </div>
-
-        <div class="accordion open">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="true"
-          >
-            <span class="accordion-title">Methodology / Approach</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="false">
-            <div class="accordion-content">
-              <p>
-                Agile-Lite, Single Iteration Methodology aka “one iteration
-                because my life is on fire”
-              </p>
-              <p><strong>Methodology Overview</strong></p>
-              <p>
-                This project will follow an Agile-Lite methodology using a
-                single, focused iteration. Instead of multiple sprints, i will
-                work through one compressed cycle that includes planning,
-                execution, feedback, and refinement. The focus is on delivering
-                usable career assets (LinkedIn profile, networking activities,
-                resume, and applications) within a short time frame while
-                remaining flexible to feedback from my professor and
-                professional contacts.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">Methodology Justification</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <p><strong>Time constraints</strong></p>
-              <p>
-                With only one week remaining, a traditional multi-sprint
-                approach would create unnecessary overhead. A single Agile-Lite
-                iteration allows me to focus on completing the most valuable
-                work efficiently.
-              </p>
-              <p><strong>Need for Flexibility</strong></p>
-              <p>
-                This project depends on real-world interactions (networking and
-                informational outreach) that may change based on responses and
-                availability. Agile-Lite supports adapting priorities as I
-                receive feedback or new information.
-              </p>
-              <p><strong>Value-focused delivery</strong></p>
-              <p>
-                The methodology emphasizes producing working “increments” of
-                value, an updated LinkedIn profile, documented skills, resume,
-                and real job applications, rather than spending time on heavy
-                documentation or rigid phase gates. This aligns directly with
-                the goal of transitioning into a Business/Data Analyst role.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <p class="small-note">Methodology Diagram</p>
-      </div>
-    </section>
-
-    <!-- Budget Estimation -->
-    <section id="section-budget">
-      <div class="section-card">
-        <div class="section-header">
-          <h2 class="section-title">Budget Estimation</h2>
-          <span class="section-tag">Costs & Breakdown</span>
-        </div>
-
-        <div class="accordion open">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="true"
-          >
-            <span class="accordion-title">Labor Costs</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="false">
-            <div class="accordion-content">
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Cost Item</th>
-                      <th>Quantity / Hours</th>
-                      <th>Price / Rate</th>
-                      <th>Total Cost</th>
-                      <th>Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>LinkedIn Optimization</td>
-                      <td>4 hrs</td>
-                      <td>$25/hr</td>
-                      <td>$100</td>
-                      <td>Branding &amp; content</td>
-                    </tr>
-                    <tr>
-                      <td>Networking &amp; Research</td>
-                      <td>5 hrs</td>
-                      <td>$25/hr</td>
-                      <td>$125</td>
-                      <td>Contacts &amp; org research</td>
-                    </tr>
-                    <tr>
-                      <td>Informational Outreach</td>
-                      <td>4 hrs</td>
-                      <td>$25/hr</td>
-                      <td>$100</td>
-                      <td>Interviews &amp; notes</td>
-                    </tr>
-                    <tr>
-                      <td>Resume &amp; Cover Letter Tailoring</td>
-                      <td>4 hrs</td>
-                      <td>$25/hr</td>
-                      <td>$100</td>
-                      <td>Draft + review</td>
-                    </tr>
-                    <tr>
-                      <td>Experience &amp; Skills Documentation</td>
-                      <td>3 hrs</td>
-                      <td>$25/hr</td>
-                      <td>$75</td>
-                      <td>Bullet bank</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="small-note">Labor Subtotal: $500</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">Equipment / Software</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Cost Item</th>
-                      <th>Quantity</th>
-                      <th>Price / Rate</th>
-                      <th>Total Cost</th>
-                      <th>Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Asana Subscription</td>
-                      <td>2 months</td>
-                      <td>$30/mo</td>
-                      <td>$60</td>
-                      <td>Project management</td>
-                    </tr>
-                    <tr>
-                      <td>ChatGPT Plus</td>
-                      <td>2 months</td>
-                      <td>$20/mo</td>
-                      <td>$40</td>
-                      <td>Research + writing support</td>
-                    </tr>
-                    <tr>
-                      <td>BetterPic Professional Headshot</td>
-                      <td>1</td>
-                      <td>$40</td>
-                      <td>$40</td>
-                      <td>LinkedIn profile photo</td>
-                    </tr>
-                    <tr>
-                      <td>Business Cards</td>
-                      <td>100</td>
-                      <td>$30</td>
-                      <td>$30</td>
-                      <td>Networking</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="small-note">Equipment/Software Subtotal: $170</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">Materials</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Cost Item</th>
-                      <th>Quantity</th>
-                      <th>Price / Rate</th>
-                      <th>Total Cost</th>
-                      <th>Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Notebook / Journal</td>
-                      <td>1</td>
-                      <td>$5</td>
-                      <td>$5</td>
-                      <td>Interview notes</td>
-                    </tr>
-                    <tr>
-                      <td>Printing (optional)</td>
-                      <td>10 pages</td>
-                      <td>$0.10/page</td>
-                      <td>$1</td>
-                      <td>Resume drafts</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="small-note">Materials Subtotal: $6</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">Services</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Cost Item</th>
-                      <th>Quantity</th>
-                      <th>Price / Rate</th>
-                      <th>Total Cost</th>
-                      <th>Notes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Resume Review (Career Center)</td>
-                      <td>1</td>
-                      <td>$0</td>
-                      <td>$0</td>
-                      <td>Free</td>
-                    </tr>
-                    <tr>
-                      <td>Mock Interview</td>
-                      <td>1</td>
-                      <td>$0</td>
-                      <td>$0</td>
-                      <td>Free</td>
-                    </tr>
-                    <tr>
-                      <td>Transportation (optional)</td>
-                      <td>1 trip</td>
-                      <td>$15</td>
-                      <td>$15</td>
-                      <td>For in-person meetings</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="small-note">Services Subtotal: $15</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion">
-          <button
-            class="accordion-header"
-            type="button"
-            aria-expanded="false"
-          >
-            <span class="accordion-title">Total Budget &amp; Percentages</span>
-            <span class="accordion-icon">›</span>
-          </button>
-          <div class="accordion-body" aria-hidden="true">
-            <div class="accordion-content">
-              <p>Subtotal Direct Costs = $691</p>
-              <p>Contingency Reserve (20%) = $138.20</p>
-              <p>Total Project Budget = $829.20</p>
-
-              <p><strong>Budget Breakdown Percentages</strong></p>
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Category</th>
-                      <th>Cost</th>
-                      <th>% of Total Project Budget</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Labor</td>
-                      <td>$500</td>
-                      <td>(500 ÷ 829.20) ≈ 60.3%</td>
-                    </tr>
-                    <tr>
-                      <td>Equipment/Software</td>
-                      <td>$170</td>
-                      <td>(170 ÷ 829.20) ≈ 20.5%</td>
-                    </tr>
-                    <tr>
-                      <td>Materials</td>
-                      <td>$6</td>
-                      <td>(6 ÷ 829.20) ≈ 0.7%</td>
-                    </tr>
-                    <tr>
-                      <td>Services</td>
-                      <td>$15</td>
-                      <td>(15 ÷ 829.20) ≈ 1.8%</td>
-                    </tr>
-                    <tr>
-                      <td>Contingency Reserve</td>
-                      <td>$138.20</td>
-                      <td>(138.20 ÷ 829.20) ≈ 16.7%</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Timeline & Milestones (Placeholder) -->
-    <section id="section-timeline">
-      <div class="section-card">
-        <div class="section-header">
-          <h2 class="section-title">Timeline &amp; Milestones</h2>
-          <span class="section-tag">Placeholder Section</span>
-        </div>
-        <div class="timeline-placeholder">
-          <div class="timeline-chip">
-            <span>⏱</span>
-            <span>Timeline &amp; Milestones (optional section placeholder)</span>
-          </div>
-          <p class="timeline-note">
-            This section is reserved as a placeholder for future timeline and
-            milestone details related to the
-            <em>Help Desk to Analyst: Strategic Career Transition Project</em>.
-          </p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- JavaScript: Accordions, Sticky Nav, Smooth Scroll -->
-  <script>
-    // Smooth scroll and active nav state
-    const navLinks = document.querySelectorAll(".nav-link");
-
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        const targetId = link.getAttribute("data-target");
-        const section = document.getElementById(targetId);
-        if (!section) return;
-
-        // Scroll with offset
-        const rect = section.getBoundingClientRect();
-        const offset = window.scrollY + rect.top - 80;
-        window.scrollTo({ top: offset, behavior: "smooth" });
-
-        // Set active state
-        navLinks.forEach((l) => l.classList.remove("active"));
-        link.classList.add("active");
-      });
-    });
-
-    // Highlight nav link on scroll
-    const sectionIds = [
-      "section-title",
-      "section-vision",
-      "section-business",
-      "section-scope",
-      "section-stakeholders",
-      "section-deliverables",
-      "section-wbs",
-      "section-methodology",
-      "section-budget",
-      "section-timeline",
-    ];
-
-    const sectionElements = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
-    window.addEventListener("scroll", () => {
-      const scrollPos = window.scrollY || document.documentElement.scrollTop;
-      let currentId = sectionIds[0];
-
-      sectionElements.forEach((section, index) => {
-        const rect = section.getBoundingClientRect();
-        const top = scrollPos + rect.top - 120;
-        if (scrollPos >= top) {
-          currentId = sectionIds[index];
-        }
-      });
-
-      navLinks.forEach((link) => {
-        if (link.getAttribute("data-target") === currentId) {
-          link.classList.add("active");
-        } else {
-          link.classList.remove("active");
-        }
-      });
-    });
-
-    // Accordions
-    const accordions = document.querySelectorAll(".accordion");
-
-    accordions.forEach((accordion) => {
-      const header = accordion.querySelector(".accordion-header");
-      const body = accordion.querySelector(".accordion-body");
-
-      const setBodyHeight = () => {
-        if (accordion.classList.contains("open")) {
-          body.style.maxHeight = body.scrollHeight + "px";
-          body.setAttribute("aria-hidden", "false");
-          header.setAttribute("aria-expanded", "true");
-        } else {
-          body.style.maxHeight = "0px";
-          body.setAttribute("aria-hidden", "true");
-          header.setAttribute("aria-expanded", "false");
-        }
-      };
-
-      // Initialize heights
-      setBodyHeight();
-
-      header.addEventListener("click", () => {
-        accordion.classList.toggle("open");
-        setBodyHeight();
-      });
-
-      // Recalculate on window resize
-      window.addEventListener("resize", setBodyHeight);
-    });
-  </script>
+  </div>
 </body>
 </html>
